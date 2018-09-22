@@ -1,92 +1,98 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-   <!-- Bootstrap -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
- <!-- Firebase Ref -->
- <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
- <!-- moment js ref -->
- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- Firebase Ref -->
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 
- <!-- css -->
- <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- moment js ref -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
- 
+  <!-- css -->
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+
+
 </head>
 
 <body>
 
- <div class = "jumbotron"> <!--header with title and backgrnd pic?-->
-   <h1 class="text-center">Train Schedule</h1>
- </div>
+  <div class="jumbotron">
+    <!--header with title and backgrnd pic?-->
+    <h1 class="text-center">Train Schedule</h1>
+  </div>
 
- <br>
+  <br>
 
- <div class="row">
- <!-- table columns... -->
-   <div class="col-lg-12 col-md-12 col-sm-12">
-     <!--Table for the train schedule-->
-     <div class="panel panel-default">
-         <!-- Default panel contents -->
-         <h3>Arrival Times</h3>
-       </div>
+  <div class="row">
+    <!-- table columns... -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <!--Table for the train schedule-->
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <h3>Arrival Times</h3>
+      </div>
 
-       <div><!-- Table -->
-         <table class="table" id= "trainTable">
-             <thead><!--column titles-->
-               <tr>
-                 <th>Train Name</th>
-                 <th>Destination</th>
-                 <th>Frequency(min)</th>
-                 <th>Next Arrival</th>
-                 <th>Minutes Away</th>
-               </tr>
-             </thead>
+      <div>
+        <!-- Table -->
+        <table class="table" id="trainTable">
+          <thead>
+            <!--column titles-->
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Frequency(min)</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+            </tr>
+          </thead>
 
-         <tbody></tbody> <!--content goes here-->
+          <tbody></tbody>
+          <!--content goes here-->
 
-         </table>
-     </div><!-- table end-->
-     <br>
+        </table>
+      </div><!-- table end-->
+      <br>
 
-     <form>
-     
-       <div class="form-group">
+      <form>
 
-         <!-- <label for="name">T</label> -->
-           <input type="text" class="form-control"
-           id="name" placeholder="Train Name">
+        <div class="form-group">
 
-         <!-- <label for="dest">Destination</label> -->
-           <input type="text" class="form-control"
-           id="dest" placeholder="Destination" >
-     
-         <!-- <label for="firstTrain">First Train Time (24:00)</label> -->
-           <input type="text" class="form-control" id="firstTime" placeholder="First Train Time(24:00)">
+          <!-- <label for="name">T</label> -->
+          <input type="text" class="form-control" id="name" placeholder="Train Name">
 
-           <!-- <label for="freq">Frequency (min)</label> -->
-           <input type="text" class="form-control" id="freq" placeholder="Frequency (min)">
-         
-            <button class="btn btn-primary btn-lg" id="trainInfoBtn" type="submit">Submit</button>
-           
-         </div><!--input end-->
-       </form>
-   </div><!--class="col" end-->
- </div><!--class="row" end--> 
- <!-- javascript -->
- <script type="script.js"></script>
+          <!-- <label for="dest">Destination</label> -->
+          <input type="text" class="form-control" id="dest" placeholder="Destination">
+
+          <!-- <label for="firstTrain">First Train Time (24:00)</label> -->
+          <input type="text" class="form-control" id="firstTime" placeholder="First Train Time(24:00)">
+
+          <!-- <label for="freq">Frequency (min)</label> -->
+          <input type="text" class="form-control" id="freq" placeholder="Frequency (min)">
+
+          <button class="btn btn-primary btn-lg" id="trainInfoBtn" type="submit">Submit</button>
+
+        </div>
+        <!--input end-->
+      </form>
+    </div>
+    <!--class="col" end-->
+  </div>
+  <!--class="row" end-->
+  <!-- javascript -->
+  <!-- <script type="script.js"></script> -->
 </body>
+
 </html>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
@@ -100,86 +106,94 @@
   firebase.initializeApp(config);
 
   var database = firebase.database();
-  $("#trainInfoBtn").on("click", function(event) {
-	event.preventDefault(); //no button reset
+  $("#trainInfoBtn").on("click", function (event) {
+    event.preventDefault(); //no button reset
 
-	//set user input values to variables
-	var trainName = $("#name").val().trim();
-	var destination = $("#dest").val().trim();
+    //set user input values to variables
+    var trainName = $("#name").val().trim();
+    var destination = $("#dest").val().trim();
 
-	//converts user input to usable info
-	var firstTime = moment($("#firstTime").val().trim(), "hh:mm").subtract(1, "years").format("X");
+    //converts user input to usable info
+    var firstTime = moment($("#firstTime").val().trim(), "hh:mm").subtract(1, "years").format("X");
 
-	var frequency = $("#freq").val().trim();
-	
-	//current time
-	var currentTime = moment();
-	console.log("CURRENT TIME: " +  moment(currentTime).format("hh:mm"));
+    var frequency = $("#freq").val().trim();
 
-	// console.log(trainName);
-	// console.log(destination);
-	// console.log(firstTime);
-	// console.log(frequency);
-	// console.log(currentTime);
+    //current time
+    var currentTime = moment();
+    diffTime = currentTime.diff(moment(firstTime), "minutes");
+    tRemainder = diffTime % frequency;
+    minutesTillNextTrain = frequency - tRemainder;
+    nextTrain = currentTime.add(minutesTillNextTrain, "minutes");
 
+    nextTrainFormated = moment(nextTrain).format("HH:mm");
 
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
-	//gathers together all our new train info
-	var newTrain = {
-
-		train: trainName,
-		trainGoing: destination,
-		trainComing: firstTime,
-		everyXMin: frequency
-	};
+    // console.log(trainName);
+    // console.log(destination);
+    // console.log(firstTime);
+    // console.log(frequency);
+    // console.log(currentTime);
 
 
-	//uploads newTrain to firebase
-	database.ref().push(newTrain);
-	//*push* adds to info already in firebase. *set* overwrites preexisting info
-	
-	//clears elements before adding new text
-	$("#name").val("");
-	$("#dest").val("");
-	$("#firstTime").val("");
-	$("#freq").val("");
 
-	//supposed to prevent from moving to a new page... idk how
-	return false;
+    //gathers together all our new train info
+    var newTrain = {
 
-}); //end of onclick
+      train: trainName,
+      trainGoing: destination,
+      trainComing: firstTime,
+      everyXMin: frequency
+    };
 
-//figure out what this does
-database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-		console.log(childSnapshot.val());
-		//store in variables
-		var trainName = childSnapshot.val().train;
-		var destination =childSnapshot.val().trainGoing;
-		var firstTime = childSnapshot.val().trainComing;
-		var frequency = childSnapshot.val().everyXMin;
+    //uploads newTrain to firebase
+    database.ref().push(newTrain);
+    //*push* adds to info already in firebase. *set* overwrites preexisting info
 
-// 		console.log(trainName);
-// 		console.log(destination);
-// 		console.log(firstTime);
-// 		console.log(frequency);
+    //clears elements before adding new text
+    $("#name").val("");
+    $("#dest").val("");
+    $("#firstTime").val("");
+    $("#freq").val("");
 
-		//makes first train time neater
-		var trainTime = moment.unix(firstTime).format("hh:mm");
-		//calculate difference between times
-		var difference =  moment().diff(moment(trainTime),"minutes");
+    //supposed to prevent from moving to a new page... idk how
+    return false;
 
-		//time apart(remainder)
-		var trainRemain = difference % frequency;
+  }); //end of onclick
 
-		//minutes until arrival
-		var minUntil = frequency - trainRemain;
+  //figure out what this does
+  database.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
-		//next arrival time
-		var nextArrival = moment().add(minUntil, "minutes").format('hh:mm');
+    console.log(childSnapshot.val());
+    //store in variables
+    var trainName = childSnapshot.val().train;
+    var destination = childSnapshot.val().trainGoing;
+    var firstTime = childSnapshot.val().trainComing;
+    var frequency = childSnapshot.val().everyXMin;
 
-		//adding info to DOM table 
-		$("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + minUntil + "</td></tr>");
+    // 		console.log(trainName);
+    // 		console.log(destination);
+    // 		console.log(firstTime);
+    // 		console.log(frequency);
 
-});
+    //makes first train time neater
+    var trainTime = moment.unix(firstTime).format("hh:mm");
+    //calculate difference between times
+    var difference = moment().diff(moment(trainTime), "minutes");
 
+    //time apart(remainder)
+    var trainRemain = difference % frequency;
+
+    //minutes until arrival
+    var minUntil = frequency - trainRemain;
+
+    //next arrival time
+    var nextArrival = moment().add(minUntil, "minutes").format('hh:mm');
+
+    //adding info to DOM table 
+    $("#trainTable > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency +
+      "</td><td>" + nextArrival + "</td><td>" + minUntil + "</td></tr>");
+
+  });
+</script>
